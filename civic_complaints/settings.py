@@ -9,6 +9,7 @@ SECRET_KEY = 'your-secret-key'  # replace this in production
 
 # DEVELOPMENT SETTINGS
 DEBUG = True
+<<<<<<< HEAD
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
@@ -17,6 +18,10 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://complaint-registration-nnuw.onrender.com',
 ]
+=======
+ALLOWED_HOSTS = ['complaint-registration-portal.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://complaint-registration-portal.onrender.com']
+>>>>>>> b98ec99c7db4cd0e8a1bdc85b14eba7d38906d93
 # APPLICATION DEFINITIONS
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -33,7 +38,10 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+<<<<<<< HEAD
     'whitenoise.middleware.WhiteNoiseMiddleware',
+=======
+>>>>>>> b98ec99c7db4cd0e8a1bdc85b14eba7d38906d93
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -66,6 +74,7 @@ WSGI_APPLICATION = 'civic_complaints.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+<<<<<<< HEAD
         'NAME': 'civicdatabase',
         'USER': 'civicuser',
         'PASSWORD': 'yk43x2Uh7inOTYwRiJSgd01oF1OZKsY2',
@@ -78,6 +87,15 @@ DATABASES = {
 }
 
 
+=======
+        'NAME': 'civic_database',  # replace with your database name
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+>>>>>>> b98ec99c7db4cd0e8a1bdc85b14eba7d38906d93
 import sys
 if 'test' in sys.argv:
     DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
@@ -112,6 +130,7 @@ USE_L10N = True
 USE_TZ = True
 
 # ✅ STATIC FILES
+<<<<<<< HEAD
 # settings.py
 
 STATIC_URL = '/static/'
@@ -128,6 +147,15 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # ✅ MEDIA FILES
 
+=======
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# ✅ MEDIA FILES
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+>>>>>>> b98ec99c7db4cd0e8a1bdc85b14eba7d38906d93
 # ✅ DEFAULT PRIMARY KEY FIELD
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

@@ -11,9 +11,14 @@ __pycache__/
 /venv/
 
 # Media and Static files
+<<<<<<< HEAD
 media
 staticfiles
 #________________
+=======
+/media/
+/staticfiles/
+>>>>>>> b98ec99c7db4cd0e8a1bdc85b14eba7d38906d93
 
 # SQLite (optional but harmless)
 db.sqlite3
@@ -28,4 +33,7 @@ Thumbs.db
 # coverage
 htmlcov/
 .coverage
+<<<<<<< HEAD
 media/
+=======
+>>>>>>> b98ec99c7db4cd0e8a1bdc85b14eba7d38906d93
