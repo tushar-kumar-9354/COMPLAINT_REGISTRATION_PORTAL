@@ -13,7 +13,7 @@ __pycache__/
 # Media and Static files
 media
 staticfiles
-
+#________________
 
 # SQLite (optional but harmless)
 db.sqlite3
