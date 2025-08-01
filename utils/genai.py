@@ -8,9 +8,9 @@ import os
 # The code below will try to get the key from the environment.
 # If that fails, it falls back to a hard-coded key (for demonstration purposes only).
 try:
-    genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+    genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 except KeyError:
-    print("Warning: GOOGLE_API_KEY environment variable not set. Using a hardcoded key. This is not secure.")
+    print("Warning: GEMINI_API_KEY environment variable not set. Using a hardcoded key. This is not secure.")
     genai.configure(api_key="AIzaSyBBQosOXYbKNUA5490LcvTT4D9_znWr6hs")
 
 model = genai.GenerativeModel("gemini-2.0-flash")
