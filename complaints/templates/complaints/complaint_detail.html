@@ -1,0 +1,134 @@
+{% extends 'complaints/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-0">Complaint Details #{{ complaint.id }}</h2>
+        <span class="badge badge-light text-uppercase">{{ complaint.get_status_display }}</span>
+      </div>
+    </div>
+    
+    <div class="card-body">
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="detail-item">
+            <h5 class="text-muted">Category</h5>
+            <p class="lead">{{ complaint.get_category_display }}</p>
+          </div>
+          
+          <div class="detail-item">
+            <h5 class="text-muted">Description</h5>
+            <p>{{ complaint.description }}</p>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="detail-item">
+            <h5 class="text-muted">Location</h5>
+            <p>{{ complaint.address }}</p>
+            {% if complaint.location_lat and complaint.location_long %}
+            <div class="mt-2">
+              <a href="https://maps.google.com/?q={{ complaint.location_lat }},{{ complaint.location_long }}" 
+                 target="_blank" class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-map-marker-alt"></i> View on Map
+              </a>
+            </div>
+            {% endif %}
+          </div>
+          
+          <div class="detail-item">
+            <h5 class="text-muted">Created</h5>
+            <p>{{ complaint.created_at|date:"d M Y, H:i" }}</p>
+          </div>
+        </div>
+      </div>
+      
+      {% if complaint.image %}
+      <div class="mb-4">
+        <h5 class="text-muted">Attachment</h5>
+        <img src="{{ complaint.image.url }}" alt="Complaint photo" class="img-fluid rounded" style="max-height: 300px;">
+      </div>
+      {% endif %}
+      
+      <hr>
+      
+      <h4 class="mb-3">Status History</h4>
+      <div class="timeline">
+        {% for update in complaint.status_updates.all %}
+        <div class="timeline-item {% if forloop.first %}timeline-item-active{% endif %}">
+          <div class="timeline-badge bg-{% if forloop.first %}primary{% else %}secondary{% endif %}"></div>
+          <div class="timeline-content card">
+            <div class="card-body">
+              <div class="d-flex justify-content-between">
+                <h5 class="mb-1">{{ update.get_new_status_display }}</h5>
+                <small class="text-muted">{{ update.timestamp|date:"d M Y, H:i" }}</small>
+              </div>
+              {% if update.note %}
+              <p class="mb-0">{{ update.note }}</p>
+              {% endif %}
+              {% if update.official_comment %}
+              <div class="official-comment mt-2 p-2 bg-light rounded">
+                <small class="text-muted">Official note:</small>
+                <p class="mb-0">{{ update.official_comment }}</p>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="alert alert-info">No status updates yet.</div>
+        {% endfor %}
+      </div>
+    </div>
+    
+    <div class="card-footer text-right">
+      <a href="{% url 'my_complaints' %}" class="btn btn-secondary">
+ 
+      <i class="fas fa-arrow-left"></i> Back to List
+      </a>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<style>
+  .detail-item {
+    margin-bottom: 1.5rem;
+  }
+  
+  .timeline {
+    position: relative;
+    padding-left: 1rem;
+  }
+  
+  .timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+  
+  .timeline-badge {
+    position: absolute;
+    left: -0.5rem;
+    top: 0;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    z-index: 2;
+  }
+  
+  .timeline-content {
+    margin-left: 1rem;
+  }
+  
+  .timeline-item-active .timeline-badge {
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.25);
+  }
+  
+  .official-comment {
+    border-left: 3px solid #6c757d;
+  }
+</style>
+{% endblock %}

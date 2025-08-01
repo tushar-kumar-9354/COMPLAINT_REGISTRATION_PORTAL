@@ -1,0 +1,23 @@
+[33ma93b4a0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix: bind to port 02
+[33m9a9428e[m Fix: bind to port 02
+[33m67a44d8[m Fix: bind to port 02
+[33m6a3212a[m Fix: bind to port
+[33mb148718[m Fix: bind to port 10000 for Render
+[33m12e4b70[m Fix: bind to port 10000 for Render
+[33m5a4260b[m Fix: bind to port 10000 for Render
+[33mf1e453f[m Add sentence-transformers to requirements
+[33mba93ad9[m [any message]
+[33m106f875[m [any message]
+[33ma97add5[m [any message]
+[33m23f7ad4[m [any message]
+[33m87a3cd3[m [any message]
+[33m0c43b4d[m [any message]
+[33mdc59722[m [any message]
+[33macbb148[m [any message]
+[33m64b0479[m [any message]
+[33m51d2548[m [any message]
+[33m17898b1[m Describe your changes
+[33mb156731[m [any message]
+[33m72e6056[m final code
+[33m692e04a[m updated code of some html and views
+[33m4e0da8a[m Initial commit with .gitignore for PostgreSQL setup
