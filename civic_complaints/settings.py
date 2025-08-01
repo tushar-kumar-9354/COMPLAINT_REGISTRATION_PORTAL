@@ -9,8 +9,8 @@ SECRET_KEY = 'your-secret-key'  # replace this in production
 
 # DEVELOPMENT SETTINGS
 DEBUG = True
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['complaint-registration-portal.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://complaint-registration-portal.onrender.com']
 # APPLICATION DEFINITIONS
 INSTALLED_APPS = [
     'django.contrib.admin',
