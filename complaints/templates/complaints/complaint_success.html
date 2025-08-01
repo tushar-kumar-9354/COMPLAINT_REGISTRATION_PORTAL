@@ -1,0 +1,8 @@
+{% extends 'complaints/base.html' %}
+
+{% block content %}
+  <div class="alert alert-success mt-4">
+    ✅ Your complaint has been successfully submitted.
+  </div>
+  <a href="{% url 'submit_complaint' %}" class="btn btn-primary mt-3">Submit Another Complaint</a>
+{% endblock %}

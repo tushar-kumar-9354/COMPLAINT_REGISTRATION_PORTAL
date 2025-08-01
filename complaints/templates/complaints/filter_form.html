@@ -1,0 +1,21 @@
+ <!-- Filter Bar -->
+  
+  <form method="get" action="{% url 'filter_complaints' %}" class="d-flex mb-4 gap-2">
+    <select name="status" class="form-select w-auto">
+      <option value="">All Statuses</option>
+      <option value="pending" {% if request.GET.status == 'pending' %}selected{% endif %}>Pending</option>
+      <option value="in_progress" {% if request.GET.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+      <option value="resolved" {% if request.GET.status == 'resolved' %}selected{% endif %}>Resolved</option>
+    </select>
+
+    <select name="category" class="form-select w-auto">
+      <option value="">All Categories</option>
+      <option value="pothole" {% if request.GET.category == 'pothole' %}selected{% endif %}>Pothole</option>
+      <option value="garbage" {% if request.GET.category == 'garbage' %}selected{% endif %}>Garbage</option>
+      <option value="light" {% if request.GET.category == 'light' %}selected{% endif %}>Streetlight</option>
+      <option value="water" {% if request.GET.category == 'water' %}selected{% endif %}>Water Leakage</option>
+      <option value="other" {% if request.GET.category == 'other' %}selected{% endif %}>Other</option>
+    </select>
+
+    <button type="submit" class="btn btn-outline-primary">Filter</button>
+</form>

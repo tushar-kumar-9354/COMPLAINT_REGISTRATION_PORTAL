@@ -1,0 +1,86 @@
+{% extends 'complaints/base.html' %}
+{% block content %}
+{% include 'complaints/filter_form.html' %}
+
+<div class="container mt-4">
+  <h2 class="mb-4 text-primary">📋 My Complaints</h2>
+  <!-- Complaint Cards -->
+  {% if complaints %}
+    <div class="row">
+      {% for complaint in complaints %}
+        <div class="col-md-6 mb-4">
+          <div class="card shadow-sm border-left-primary">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <h5 class="card-title">{{ complaint.category|title }}</h5>
+                <span class="badge 
+                  {% if complaint.status == 'Pending' %} bg-warning 
+                  {% elif complaint.status == 'Resolved' %} bg-success 
+                  {% elif complaint.status == 'In Progress' %} bg-info 
+                  {% else %} bg-secondary {% endif %}">
+                  {{ complaint.status }}
+                </span>
+              </div>
+
+              <p class="card-text mt-2">{{ complaint.description|truncatechars:100 }}</p>
+
+              {% if complaint.image %}
+                <img src="{{ complaint.image.url }}" alt="Complaint Image" class="img-fluid rounded mb-2" style="max-height: 200px;">
+              {% endif %}
+
+              <!-- AI Summary & Tone -->
+              <p class="small text-muted">🧠 AI Summary: {{ complaint.auto_response|truncatechars:80 }}</p>
+
+                <p class="small">🎭 Tone: 
+                {% if complaint.tone == "Toxic" %}
+                  <span class="text-danger">{{ complaint.tone }}</span>
+                  <br>
+                  <span class="text-danger">Priority: 0</span>
+                  <br>
+                  <span class="text-danger">Reason: Tone is toxic</span>
+                {% elif complaint.tone == "Negative" %}
+                  <span class="text-danger">{{ complaint.tone }}</span>
+                {% elif complaint.tone == "Positive" %}
+                  <span class="text-success">{{ complaint.tone }}</span>
+                {% else %}
+                  <span class="text-secondary">{{ complaint.tone }}</span>
+                {% endif %}
+                </p>
+              <p class="small">Status: {{ complaint.status }}</p>
+              <p class="small">🔍 Duplicate: 
+                {% if complaint.is_duplicate %}
+                  <span class="text-warning">Yes</span>
+                {% else %}
+                  <span class="text-success">No</span>
+                {% endif %}
+                </p>
+
+                <!-- Assigned To Info with Debug -->
+                <p class="small mb-1">
+                <strong>👤 Assigned To:</strong>
+                {% if complaint.assigned_to %}
+                  {{ complaint.assigned_to.user.get_full_name|default:complaint.assigned_to.user.username }}
+                {% else %}
+                  <span class="text-muted">Not Assigned</span>
+                {% endif %}
+              </p>
+              
+              <small class="text-muted">📅 Submitted: {{ complaint.created_at|date:"d M Y, H:i" }}</small><br>
+
+              <!-- View Details Button -->
+              <a href="{% url 'complaint_detail' complaint.id %}" class="btn btn-sm btn-outline-primary mt-2">View Details</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info text-center mt-5">
+      <h4 class="alert-heading">No Complaints Yet 😌</h4>
+      <p>Looks like you haven’t submitted any complaints. Click below to raise one!</p>
+      <a href="{% url 'submit_complaint' %}" class="btn btn-primary">Submit Complaint</a>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}
